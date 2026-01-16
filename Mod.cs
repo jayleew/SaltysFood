@@ -20,7 +20,7 @@ namespace SaltyFood
      * BaseMod is a class from KitchenLib that contains all of the base functionality for your mod.
      * IModSystem is an interface from KitchenMods that ensures that your mod is also loaded as an ECS system.
      */
-    public class Mod : BaseMod, IModSystem
+    public class Mod : BaseMod, IModSystem, KitchenLib.Interfaces.IAutoRegisterAll
     {
         /*
          * This is information related to your mod.
@@ -31,9 +31,9 @@ namespace SaltyFood
          * AUTHOR: Your name.
          * GAMEVERSION: The version of the game that your mod is compatible with. This is uses Semantic Versioning which can be found here: https://semver.org/
          */
-        public const string MOD_GUID = "com.saltyflea.saltyfood";
+        public const string MOD_GUID = "com.saltyflea.saltysfood";
         public const string MOD_NAME = "SaltysFood";
-        public const string MOD_VERSION = "0.1.0";
+        public const string MOD_VERSION = "0.1.4";
         public const string MOD_AUTHOR = "SaltyFlea";
         public const string MOD_GAMEVERSION = ">=1.3.0";
 
@@ -57,6 +57,9 @@ namespace SaltyFood
         protected override void OnInitialise()
         {
             Logger.LogWarning($"{MOD_GUID} v{MOD_VERSION} in use!");
+            var mats = Bundle.LoadAllAssets<Material>();
+            foreach (var mat in mats) { KitchenLib.Customs.CustomMaterials.AddMaterial(mat.name, mat); }
+            Logger.LogInfo($"Custom materials loaded:{mats.Length}");
         }
 
         /*
@@ -80,31 +83,30 @@ namespace SaltyFood
              *
              * You can also add IAutoRegsiterAll to your base class to automatically register all GameDataObjects in the assembly.
              */
-            AddGameDataObject<LobsterProvider>();
-            //AddGameDataObject<LobsterDish>();
-            AddGameDataObject<PlatedLobster>();
-            AddGameDataObject<RawPottedLobster>();
-            AddGameDataObject<CookedLobster>();
-            AddGameDataObject<CookedPottedLobster>();
-            AddGameDataObject<RawLobster>();
+            //AddGameDataObject<LobsterProvider>();
+            ////AddGameDataObject<LobsterDish>();
+            //AddGameDataObject<PlatedLobster>();
+            //AddGameDataObject<RawPottedLobster>();
+            //AddGameDataObject<CookedLobster>();
+            //AddGameDataObject<CookedPottedLobster>();
+            //AddGameDataObject<RawLobster>();
 
             //var mat = Mod.Bundle.LoadAsset<Material>("Food_Fresnel");
-            var mats = Bundle.LoadAllAssets<Material>();
-            foreach (var mat in mats) { KitchenLib.Customs.CustomMaterials.AddMaterial(mat.name, mat); }
-            Logger.LogInfo($"Custom materials loaded:{mats.Length}");
 
-            AddGameDataObject<Rissoto>();
-            AddGameDataObject<PottedRiceNBroth>();
-            AddGameDataObject<CookedPottedRiceNBroth>();
-            AddGameDataObject<PottedRissotoFromButter>();
-            AddGameDataObject<CookedPottedRissoto>();
-            AddGameDataObject<CookedRissoto>();
-            AddGameDataObject<PottedRissotoFromCheese>();
-            AddGameDataObject<PottedRiceBrothNButter>();
-            AddGameDataObject<PottedRiceBrothNCheese>();
-            AddGameDataObject<PlatedRissoto>();
-            AddGameDataObject<CookedLobsterFlesh>();
-            AddGameDataObject<PlatedLobsterRissoto>();
+
+            //AddGameDataObject<Rissoto>();
+            //AddGameDataObject<PottedRiceNBroth>();
+            //AddGameDataObject<CookedPottedRiceNBroth>();
+            //AddGameDataObject<PottedRissotoFromButter>();
+            //AddGameDataObject<CookedPottedRissoto>();
+            //AddGameDataObject<CookedRissoto>();
+            //AddGameDataObject<PottedRissotoFromCheese>();
+            //AddGameDataObject<PottedRiceBrothNButter>();
+            //AddGameDataObject<PottedRiceBrothNCheese>();
+            //AddGameDataObject<PlatedRissoto>();
+            //AddGameDataObject<CookedLobsterFlesh>();
+            //AddGameDataObject<PlatedLobsterRissoto>();
+
             //KitchenLib.Customs.CustomMaterials.AddMaterial("Food_Fresnel", mat);            
             //AddGameDataObject<LobsterRissotoDish>();
         }

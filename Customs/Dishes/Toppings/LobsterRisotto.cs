@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using KitchenData;
 using KitchenLib.Customs;
+using KitchenLib.Interfaces;
 using KitchenLib.References;
 using KitchenLib.Utils;
+using SaltyFood.Customs.Appliances;
 using SaltyFood.Customs.ItemGroups;
 using SaltyFood.Customs.Items;
 using UnityEngine;
@@ -26,38 +28,30 @@ namespace SaltyFood.Customs.Dishes
         // CardType - Determines when this Unlock can be selected.
         public override CardType CardType => CardType.Default;
 
-        // CustomerMultiplier - Determines the customer difference this Unlock provides.
-        public override DishCustomerChange CustomerMultiplier => DishCustomerChange.LargeDecrease;
-
-        // Type - This is used to decide what phase this Dish should be ordered.
-        public override DishType Type => DishType.Main;
-
-        // Difficulty - This is displayed in the lobby. (0 - 5)
-        public override int Difficulty => 5;
-
-        // StartingNameSet - The list of names used to decide the default Restaurant name.
-        public override List<string> StartingNameSet => new List<string>
-        {
-            "RClaws and Effect",
-            "RPinch Me, I'm Dreaming",
-            "RShell Yeah!",
-            "RClaw-some Bites",
-            "RShell Shocked",
-            "RCrabby Attitude",
-            "RClawfully Good"
-        };
-
-        public override List<Unlock> HardcodedRequirements { get => new List<Unlock>() { (Dish)GDOUtils.GetCustomGameDataObject<Rissoto>().GameDataObject }; }
-
-
-
-        // MinimumIngredients - The ingredients required to make this Dish.
         public override HashSet<Item> MinimumIngredients => new HashSet<Item>()
         {
             (Item)GDOUtils.GetExistingGDO(ItemReferences.Pot),
             (Item)GDOUtils.GetExistingGDO(ItemReferences.Water),
-            (Item)GDOUtils.GetCustomGameDataObject<RawLobster>().GameDataObject
+            (Item)GDOUtils.GetExistingGDO(ItemReferences.Plate),
+            (Item)GDOUtils.GetExistingGDO(ItemReferences.Rice),
+            (Item)GDOUtils.GetExistingGDO(ItemReferences.Onion),
+            (Item)GDOUtils.GetCustomGameDataObject<IngredientLib.Ingredient.Items.ButterBlock>().GameDataObject,
+            (Item)GDOUtils.GetExistingGDO(ItemReferences.Cheese),
+            (Item)GDOUtils.GetCustomGameDataObject<RawLobster>().GameDataObject,
         };
+
+        // CustomerMultiplier - Determines the customer difference this Unlock provides.
+        public override DishCustomerChange CustomerMultiplier => DishCustomerChange.SmallDecrease;
+
+        // Type - This is used to decide what phase this Dish should be ordered.
+        public override DishType Type => DishType.Extra;
+
+        // Difficulty - This is displayed in the lobby. (0 - 5)
+        public override int Difficulty => 5;
+
+        public override List<Unlock> HardcodedRequirements { get => new List<Unlock>() { (Dish)GDOUtils.GetCustomGameDataObject<RissotoDish>().GameDataObject }; }
+
+
         // RequiredProcesses - The processes required to make this Dish.
         public override HashSet<Process> RequiredProcesses => new HashSet<Process>
         {
@@ -78,7 +72,7 @@ namespace SaltyFood.Customs.Dishes
         // Recipe - This is the recipe displayed when unlocking this Dish.
         public override Dictionary<Locale, string> Recipe => new Dictionary<Locale, string>
         {
-            { Locale.English, "Add raw lobster and water into a pot to cook." }
+            { Locale.English, "Add raw lobster and water into a pot to cook. Add to plated Rissoto" }
         };
 
         // InfoList - This is used to assign localisation to this Dish.
@@ -87,8 +81,8 @@ namespace SaltyFood.Customs.Dishes
             (Locale.English, new UnlockInfo
             {
                 Name = "Lobster Risotto",
-                Description = "Adds Lobster",
-                FlavourText = "Nothing goes better on Rissoto!"
+                Description = "Adds Lobster To Rissoto",
+                FlavourText = "Nothing goes better on top!"
             })
         };
 

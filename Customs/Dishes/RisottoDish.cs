@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using KitchenData;
 using KitchenLib.Customs;
+using KitchenLib.Interfaces;
 using KitchenLib.References;
 using KitchenLib.Utils;
 using SaltyFood.Customs.ItemGroups;
@@ -9,7 +10,7 @@ using UnityEngine;
 
 namespace SaltyFood.Customs.Dishes
 {
-    public class Rissoto : CustomDish
+    public class RissotoDish : CustomDish
     {
         // UniqueNameID - This is used internally to generate the ID of this GDO. Once you've set it, don't change it.
         public override string UniqueNameID => "Rissoto";
@@ -38,7 +39,12 @@ namespace SaltyFood.Customs.Dishes
         // StartingNameSet - The list of names used to decide the default Restaurant name.
         public override List<string> StartingNameSet => new List<string>
         {
-            "Please add cute sayings!"
+            "Risotto Be Kidding Me",
+            "You Had Me at Risotto",
+            "Risotto Believe My Eyes",
+            "One Small Bite, One Giant Risotto",
+            "Love at First Risotto",
+            "It’s a Risotto Kind of Day"
         };
 
         // MinimumIngredients - The ingredients required to make this Dish.
@@ -50,7 +56,6 @@ namespace SaltyFood.Customs.Dishes
             (Item)GDOUtils.GetExistingGDO(ItemReferences.Rice),
             (Item)GDOUtils.GetExistingGDO(ItemReferences.Onion),
             (Item)GDOUtils.GetCustomGameDataObject<IngredientLib.Ingredient.Items.ButterBlock>().GameDataObject,
-            (Item)GDOUtils.GetCustomGameDataObject<RawLobster>().GameDataObject,
             (Item)GDOUtils.GetExistingGDO(ItemReferences.Cheese)
         };
         // RequiredProcesses - The processes required to make this Dish.
@@ -82,7 +87,7 @@ namespace SaltyFood.Customs.Dishes
         // Recipe - This is the recipe displayed when unlocking this Dish.
         public override Dictionary<Locale, string> Recipe => new Dictionary<Locale, string>
         {
-            { Locale.English, "Make an onion broth/soup. Put rice in a pot, add a portion of onion soup, butter, and chopped cheese then cook. Makes 6 portions" }
+            { Locale.English, "Make onion broth: Add onion with water in a pot & cook. Place portion of rice in broth & cook. Add butter & chopped cheese then cook. Makes six portions" }
         };
 
         // InfoList - This is used to assign localisation to this Dish.

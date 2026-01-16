@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace SaltyFood.Customs.Dishes
 {
-    public class LobsterDish : CustomDish
+    public class LobsterDish : CustomDish, KitchenLib.Interfaces.IDontRegister
     {
         // UniqueNameID - This is used internally to generate the ID of this GDO. Once you've set it, don't change it.
         public override string UniqueNameID => "LobsterDish";
