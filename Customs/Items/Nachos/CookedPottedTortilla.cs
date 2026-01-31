@@ -17,12 +17,22 @@ namespace SaltyFood.Customs.Items
 
         // DisposesTo - What this Item turns into when interacted with a bin.
         public override Item DisposesTo => (Item)GDOUtils.GetExistingGDO(ItemReferences.Pot);
+        // SplitSubItem - What Item will this Item split into.
+        public override Item SplitSubItem => (Item)GDOUtils.GetCustomGameDataObject<CookedTortilla>().GameDataObject;
 
+        // SplitCount - How many times this Item can be split.
+        public override int SplitCount => 1;
+
+        // SplitDepletedItems - What Items this Item will leave behind after being completely split.
+        public override List<Item> SplitDepletedItems => new List<Item>
+        {
+            (Item)GDOUtils.GetExistingGDO(ItemReferences.PotWithOil)
+        };
         public override List<Item.ItemProcess> Processes => new List<Item.ItemProcess>
         {
             new Item.ItemProcess
             {
-                Duration = 7,
+                Duration = 2,
                 Process = (Process)GDOUtils.GetExistingGDO(ProcessReferences.Cook),
                 IsBad = true,
                 Result = (Item)GDOUtils.GetCustomGameDataObject<BurntPottedTortilla>().GameDataObject

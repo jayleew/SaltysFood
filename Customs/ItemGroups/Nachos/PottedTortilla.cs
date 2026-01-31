@@ -58,7 +58,7 @@ namespace SaltyFood.Customs.ItemGroups
             new Item.ItemProcess
             {
                 Process = (Process)GDOUtils.GetExistingGDO(ProcessReferences.Cook),
-                Duration = 6,
+                Duration = 3,
                 Result = (Item)GDOUtils.GetCustomGameDataObject<CookedPottedTortilla>().GameDataObject
             }
         };

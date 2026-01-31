@@ -33,7 +33,7 @@ namespace SaltyFood
          */
         public const string MOD_GUID = "com.saltyflea.saltysfood";
         public const string MOD_NAME = "SaltysFood";
-        public const string MOD_VERSION = "0.1.5";
+        public const string MOD_VERSION = "0.1.6";
         public const string MOD_AUTHOR = "SaltyFlea";
         public const string MOD_GAMEVERSION = ">=1.3.0";
 
